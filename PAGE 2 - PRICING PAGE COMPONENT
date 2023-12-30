@@ -1,0 +1,49 @@
+// PAGE - 2
+// PRICING PAGE COMPONENT
+
+import React, { useState } from 'react';
+import PricingCard from './PricingCard'; // Import the PricingCard component
+
+const plansData = [
+  {
+    plan: 'Basic Plan',
+    price: '$4/month/user',
+    graphs: 'Up to 10 graphs',
+    queries: 'Up to 500 chatbot queries',
+    features: ['Feature 1', 'Feature 2', 'Feature 3'],
+  },
+  // Add details for other plans
+];
+
+const PricingPage: React.FC = () => {
+  const [selectedPlan, setSelectedPlan] = useState<string>('');
+
+  const handlePlanSelection = (plan: string) => {
+    setSelectedPlan(plan);
+  };
+
+  return (
+    <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center py-12">
+      <h1 className="text-4xl font-bold mb-8">Choose a Plan</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {plansData.map((planData, index) => (
+          <PricingCard
+            key={index}
+            {...planData}
+            selected={selectedPlan === planData.plan}
+            handlePlanSelection={handlePlanSelection}
+          />
+        ))}
+      </div>
+      {selectedPlan && (
+        <div className="mt-12 p-8 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-semibold mb-4">Selected Plan: {selectedPlan}</h2>
+          {/* Render selected plan details */}
+          {/* Use selectedPlan state to show details */}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default PricingPage;
