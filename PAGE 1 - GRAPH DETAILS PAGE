@@ -1,0 +1,51 @@
+//PAGE 1 
+//GRAPH DETAILS PAGE
+
+import React from 'react';
+
+interface GraphDetails {
+  title: string;
+  description: string;
+  dateCreated: string;
+  papers: string[]; // Assuming these are paper titles
+  // Add more properties as needed
+}
+
+interface Props {
+  graphDetails: GraphDetails;
+}
+
+const GraphDetailsPage: React.FC<Props> = ({ graphDetails }) => {
+  const { title, description, dateCreated, papers } = graphDetails;
+
+  return (
+    <div className="p-4">
+      <div className="bg-white rounded-md shadow-md p-6">
+        <h1 className="text-2xl font-bold mb-4">{title}</h1>
+        <p className="text-gray-600 mb-2">{description}</p>
+        <p className="text-gray-500 mb-4">Created on: {dateCreated}</p>
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Papers in this graph:</h2>
+          <ul className="list-disc list-inside">
+            {papers.map((paper, index) => (
+              <li key={index} className="text-gray-600">{paper}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="mt-6 flex items-center justify-between">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Edit Graph
+          </button>
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Delete Graph
+          </button>
+          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+            Share Graph
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default GraphDetailsPage;
