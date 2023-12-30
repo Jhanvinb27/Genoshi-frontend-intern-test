@@ -1,0 +1,98 @@
+// PAGE-1
+// CREATE A NEW GRAPH PAGE COMPONENT
+
+import React, { useState } from 'react';
+
+interface GraphFormData {
+  title: string;
+  description: string;
+  papers: File[];
+  layout: string;
+  colors: string[];
+  // Add more properties as needed for graph configuration
+}
+
+const CreateNewGraphPage: React.FC = () => {
+  const [formData, setFormData] = useState<GraphFormData>({
+    title: '',
+    description: '',
+    papers: [],
+    layout: '',
+    colors: [],
+  });
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const uploadedFiles = Array.from(event.target.files);
+      setFormData({ ...formData, papers: uploadedFiles });
+    }
+  };
+
+  // Handle other form interactions, validations, and submissions
+
+  return (
+    <div className="p-4">
+      <form className="max-w-md mx-auto">
+        <div className="mb-4">
+          <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleInputChange}
+            className="border border-gray-300 rounded-md p-2 w-full"
+            placeholder="Enter title"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="description"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            className="border border-gray-300 rounded-md p-2 w-full h-24 resize-none"
+            placeholder="Enter description"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="papers" className="block text-gray-700 font-bold mb-2">
+            Upload Papers
+          </label>
+          <input
+            type="file"
+            id="papers"
+            name="papers"
+            onChange={handleFileChange}
+            multiple
+            className="border border-gray-300 rounded-md p-2 w-full"
+          />
+        </div>
+        {/* Add more form fields for graph settings */}
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Create Graph
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default CreateNewGraphPage;
