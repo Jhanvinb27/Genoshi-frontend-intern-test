@@ -1,0 +1,95 @@
+//PAGE 1 
+//ACCOUNT SETTINGS
+
+import React from 'react';
+
+interface AccountSettingsProps {
+  userProfile: {
+    name: string;
+    email: string;
+    profilePhoto: string;
+    bio: string;
+  };
+  subscription: {
+    plan: string;
+    status: string;
+  };
+  usageMetrics: {
+    graphsCreated: number;
+    graphsShared: number;
+    papersCollected: number;
+  };
+}
+
+const AccountSettings: React.FC<AccountSettingsProps> = ({
+  userProfile,
+  subscription,
+  usageMetrics,
+}) => {
+  const { name, email, profilePhoto, bio } = userProfile;
+  const { plan, status } = subscription;
+  const { graphsCreated, graphsShared, papersCollected } = usageMetrics;
+
+  const handleProfileUpdate = () => {
+    // Handle profile update logic
+  };
+
+  const handleChangePassword = () => {
+    // Handle password change logic
+  };
+
+  const handleSubscriptionChange = () => {
+    // Handle subscription change logic
+  };
+
+  const handleThirdPartyLink = () => {
+    // Handle third-party account linking logic
+  };
+
+  return (
+    <div className="p-4">
+      <div className="bg-white rounded-md shadow-md p-6">
+        <h2 className="text-2xl font-bold mb-4">Account Settings</h2>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">Profile Details</h3>
+          <p>Name: {name}</p>
+          <p>Email: {email}</p>
+          {/* Render other profile details */}
+          <button onClick={handleProfileUpdate} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">
+            Update Profile
+          </button>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">Subscription</h3>
+          <p>Plan: {plan}</p>
+          <p>Status: {status}</p>
+          {/* Render other subscription details */}
+          <button onClick={handleSubscriptionChange} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">
+            Manage Subscription
+          </button>
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">Usage Statistics</h3>
+          <p>Graphs Created: {graphsCreated}</p>
+          <p>Graphs Shared: {graphsShared}</p>
+          <p>Papers Collected: {papersCollected}</p>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-2">Account Options</h3>
+          <button onClick={handleChangePassword} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+            Change Password
+          </button>
+          <button onClick={handleThirdPartyLink} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+            Link Third-Party Account
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AccountSettings;
