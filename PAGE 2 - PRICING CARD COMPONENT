@@ -1,0 +1,53 @@
+//PAGE - 2
+// PRICING CARD COMPONENT
+
+import React from 'react';
+
+interface PricingCardProps {
+  plan: string;
+  price: string;
+  graphs: string;
+  queries: string;
+  features: string[];
+  selected: boolean;
+  handlePlanSelection: (plan: string) => void;
+}
+
+const PricingCard: React.FC<PricingCardProps> = ({
+  plan,
+  price,
+  graphs,
+  queries,
+  features,
+  selected,
+  handlePlanSelection,
+}) => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+      <div className={`bg-gradient-to-b from-blue-500 to-blue-400 text-white text-center py-6 ${selected ? 'border-b-4 border-blue-600' : ''}`}>
+        <h2 className="text-xl font-semibold mb-2">{plan}</h2>
+        <p className="text-2xl font-bold mb-2">{price}</p>
+        <p className="mb-4">{graphs}</p>
+        <p>{queries}</p>
+      </div>
+      <div className="p-6">
+        <ul className="mb-6">
+          {features.map((feature, index) => (
+            <li key={index} className="flex items-center mb-2">
+              <span className="inline-block w-4 h-4 bg-blue-500 rounded-full mr-2" />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+        <button
+          className={`bg-blue-500 text-white font-bold py-2 px-6 rounded-full w-full ${selected ? 'bg-blue-600' : 'hover:bg-blue-600'}`}
+          onClick={() => handlePlanSelection(plan)}
+        >
+          {selected ? 'Selected' : 'Select Plan'}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default PricingCard;
